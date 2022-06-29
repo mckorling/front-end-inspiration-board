@@ -1,8 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
 import cardsData from "./cardsData.json";
 import CardList from "./components/CardList";
 import axios from "axios";
+import CardForm from "./components/CardForm";
 
 function App() {
   const [boardData, setBoardData] = useState([]);
@@ -25,9 +25,12 @@ function App() {
       });
   };
   return (
-    <div>
-      <CardList cardsData={cardsData} />
-    </div>
+    <main>
+      <div>
+        <CardList cardsData={cardsData} />
+      </div>
+      <CardForm></CardForm>
+    </main>
   );
 }
 
