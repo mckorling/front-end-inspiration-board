@@ -3,6 +3,7 @@ import cardsData from "./cardsData.json";
 import CardList from "./components/CardList";
 import axios from "axios";
 import CardForm from "./components/CardForm";
+import { useState } from "react";
 
 function App() {
   const [boardData, setBoardData] = useState([]);
