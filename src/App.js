@@ -10,10 +10,12 @@ function App() {
   const [cardData, setCardData] = useState(cardsData);
   // Don't need useEffect for cardData because it only loads when a board is selected
 
-  // useEffect((board_id) => {
-  //   getCardDataFromAPI(board_id);
-  // }, []);
+  // hardcode board_id here, need to be updated
+  useEffect((board_id) => {
+    getCardDataFromAPI(2);
+  }, []);
 
+  // API like count is undefined. need to check back end code
   const createNewCard = ({ message, board_id }) => {
     axios
       .post(`https://team-green-inspo.herokuapp.com/boards/${board_id}/cards`, {
@@ -33,6 +35,19 @@ function App() {
         setCardData(newCardData);
       })
       .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const deleteOneCard = (card_id) => {
+    axios
+      .delete(`https://team-green-inspo.herokuapp.com/cards/${card_id}`)
+      .then(() => {
+        const newCardData = cardData.filter((card) => card_id !== card.card_id);
+        setCardData(newCardData);
+      })
+      .catch((error) => {
+        console.log("delete fail");
         console.log(error);
       });
   };
@@ -68,7 +83,7 @@ function App() {
   return (
     <main>
       <div>
-        <CardList cardsData={cardsData} />
+        <CardList cardsData={cardData} deleteOneCardCallback={deleteOneCard} />
       </div>
       <CardForm createNewCardCallback={createNewCard}></CardForm>
     </main>
