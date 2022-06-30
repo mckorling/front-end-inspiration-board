@@ -5,9 +5,7 @@ import "./Board.css";
 // const [board, setBoard] = useState({title:"",id:None, owner=""})
 const Board = (props) => {
   return (
-    <section onClick={() => props.onBoardSelect(props.board)}>
-      {props.board}
-    </section>
+    <div onClick={() => props.onBoardSelect(props.board)}>{props.board}</div>
   );
 };
 export default Board;

@@ -94,6 +94,7 @@ function App() {
   // };
   const selectBoard = (board) => {
     setChosenBoard(board);
+    console.log(setChosenBoard);
   };
 
   // const showChosenBoard = (board_id, title) => {
@@ -121,17 +122,16 @@ function App() {
     let boardList = [];
     for (let board of boardData) {
       boardList.push(
-        // <Board
-        // key={board.board_id}
-        // id={board.board_id}
-        board.title
-        // owner={board.owner}
-        // cards={cardsData}
-        // showChosenBoard={showChosenBoard}
-        //   // a function that create a new card
-        // />
+        <Board
+          // key={board.board_id}
+          id={board.board_id}
+          board={board.title}
+          // owner={board.owner}
+          // cards={cardsData}
+          // showChosenBoard={showChosenBoard}
+          //   // a function that create a new card
+        />
       );
-      console.log(boardList);
     }
     return boardList.map((board) => (
       <li>
