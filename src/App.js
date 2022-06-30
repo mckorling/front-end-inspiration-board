@@ -3,10 +3,50 @@ import cardsData from "./cardsData.json";
 import CardList from "./components/CardList";
 import axios from "axios";
 import CardForm from "./components/CardForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [boardData, setBoardData] = useState([]);
+  const [cardData, setCardData] = useState(cardsData);
+  // Don't need useEffect for cardData because it only loads when a board is selected
+
+  // useEffect((board_id) => {
+  //   getCardDataFromAPI(board_id);
+  // }, []);
+
+  const createNewCard = ({ message, board_id }) => {
+    axios
+      .post(`https://team-green-inspo.herokuapp.com/boards/${board_id}/cards`, {
+        message: message,
+      })
+      .then((response) => {
+        console.log("making new card");
+        const nextId = cardData.slice(-1)[0].card_id + 1;
+        const newCard = {
+          card_id: nextId,
+          board_id: board_id,
+          message: message,
+          likes_count: 0,
+        };
+        const newCardData = [...cardData];
+        newCardData.push(newCard);
+        setCardData(newCardData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const getCardDataFromAPI = (board_id) => {
+    axios
+      .get(`https://team-green-inspo.herokuapp.com/boards/${board_id}/cards`)
+      .then((response) => {
+        setCardData(response.data.cards);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const getBoards = () => {
     axios
@@ -30,7 +70,7 @@ function App() {
       <div>
         <CardList cardsData={cardsData} />
       </div>
-      <CardForm></CardForm>
+      <CardForm createNewCardCallback={createNewCard}></CardForm>
     </main>
   );
 }
