@@ -36,6 +36,7 @@ function App() {
       })
       .catch((error) => {
         console.log(error);
+        alert("Couldn't make new card. Enter a message.");
       });
   };
 
@@ -47,6 +48,7 @@ function App() {
         setCardData(newCardData);
       })
       .catch((error) => {
+        alert("Couldn't delete card. Please refresh and try again.");
         console.log("delete fail");
         console.log(error);
       });
