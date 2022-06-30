@@ -1,9 +1,11 @@
 import { useState } from "react";
 
-const defaultCard = { message: "", board_id: 2 };
-
 const CardForm = (props) => {
+  // need to get board id as prop?
+  const defaultCard = { message: "", board_id: 2 };
+
   const [oneCardData, setData] = useState(defaultCard);
+
   const getFormValues = (event) => {
     const inputElement = event.target;
     const name = inputElement.name;
