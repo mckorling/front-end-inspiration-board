@@ -3,6 +3,7 @@ import cardsData from "./cardsData.json";
 import CardList from "./components/CardList";
 import axios from "axios";
 import CardForm from "./components/CardForm";
+import BoardForm from "./components/BoardForm";
 import { useState, useEffect } from "react";
 import Board from "./components/Board";
 
@@ -79,101 +80,52 @@ function App() {
       });
   }, []);
 
-  // const createNewBoard = (newBoard) => {
-  //   axios
-  //     .post(`${URL}/boards`, newBoard)
-  //     .then((response) => {
-  //       newBoard.id = response.data.id;
-  //       let newBoardData = [...boardData];
-  //       newBoardData.push(newBoard);
-  //       setBoardData(newBoardData);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-  const selectBoard = (board) => {
-    setChosenBoard(board);
-    console.log(setChosenBoard);
+  const createNewBoard = (newBoard) => {
+    axios
+      .post(`${URL}/boards`, newBoard)
+      .then((response) => {
+        console.log(response)
+        newBoard.id = response.data.board.id;
+        let newBoardData = [...boardData];
+        newBoardData.push(newBoard);
+        setBoardData(newBoardData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
-  // const showChosenBoard = (board_id, title) => {
-  //   axios
-  //     .get(`${URL}/boards/${board_id}/cards`)
-  //     .then((response) => {
-  //       setChosenBoard(response.data.board.title);
-  //       // need syntax for updating text content of title here
-  //       // this will display the title in the area we want on our page
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+  const selectBoard = (board) => {
+    setChosenBoard(board)
+  };
 
-  const createBoardList = () => {
-    //   const boardTitles = boardData.map((board) => {
-    //     return (
-    //       <li>
-    //         <Board title={board.title} />
-    //       </li>
-    //     );
-    //   });
-    // };
-    let boardList = [];
-    for (let board of boardData) {
-      boardList.push(
-        <Board
-          // key={board.board_id}
-          id={board.board_id}
-          board={board.title}
-          // owner={board.owner}
-          // cards={cardsData}
-          // showChosenBoard={showChosenBoard}
-          //   // a function that create a new card
-        />
-      );
-    }
-    return boardList.map((board) => (
-      <li>
-        {/* {board} */}
+  const boardTitles = boardData.map((board) => {
+    return (
+      <li key = {board.id}>
         <Board board={board} onBoardSelect={selectBoard}></Board>
       </li>
-    ));
-  };
+    );
+  });
 
-  // const getBoards = () => {
-  //   axios
-  //     .get("https://team-green-inspo.herokuapp.com/boards")
-  //     .then((response) => {
-  //       const newBoards = response.data.map((board) => {
-  //         return {
-  //           id: board.id,
-  //           title: board.title,
-  //           owner: board.owner,
-  //         };
-  //       });
-  //       setBoardData(newBoards);
-  //     })
-  //     .catch((error) => {
-  //       console.log("Error", error);
-  //     });
-  // };
+  const [isBoardFormVisible, setIsBoardFormVisible] = useState(true);
+  const toggleBoardForm = () => {setIsBoardFormVisible(!isBoardFormVisible)}
 
   return (
     <main>
       <section>
         <h2>Boards</h2>
-        <ul>{createBoardList()}</ul>
+        <ul>{boardTitles}</ul>
       </section>
       <section>
         <h2>Selected Board</h2>
         <p>
-          {selectBoard.board_id
-            ? `${selectBoard.title} - ${selectBoard.owner}`
-            : "Please select a board"}
+          {chosenBoard.id ? `${chosenBoard.title} - ${chosenBoard.owner}` : 'Please select a board'}
         </p>
       </section>
-      {/* <section>{showChosenBoard()}</section> */}
+      <section>
+      {isBoardFormVisible ? <BoardForm createBoardCallback = {createNewBoard}></BoardForm> : ''}
+      <span onClick={toggleBoardForm}>{isBoardFormVisible ? 'Hide New Board Form' : 'Show New Board Form'}</span>
+      </section>
       <div>
         <CardList cardsData={cardData} deleteOneCardCallback={deleteOneCard} />
       </div>
