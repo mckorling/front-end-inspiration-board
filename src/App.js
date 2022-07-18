@@ -111,26 +111,34 @@ function App() {
   const toggleBoardForm = () => {setIsBoardFormVisible(!isBoardFormVisible)}
 
   return (
-    <main>
-      <section>
-        <h2>Boards</h2>
-        <ul>{boardTitles}</ul>
-      </section>
-      <section>
-        <h2>Selected Board</h2>
-        <p>
-          {chosenBoard.id ? `${chosenBoard.title} - ${chosenBoard.owner}` : 'Please select a board'}
-        </p>
-      </section>
-      <section>
-      {isBoardFormVisible ? <BoardForm createBoardCallback = {createNewBoard}></BoardForm> : ''}
-      <span onClick={toggleBoardForm}>{isBoardFormVisible ? 'Hide New Board Form' : 'Show New Board Form'}</span>
-      </section>
-      <div>
-        <CardList cardsData={cardData} deleteOneCardCallback={deleteOneCard} />
-      </div>
-      <CardForm createNewCardCallback={createNewCard}></CardForm>
-    </main>
+    <body>
+      <header>
+        <h1>Team Green's Board</h1>
+      </header>
+      <main>
+        <section>
+          <h2>Boards</h2>
+          <ul>{boardTitles}</ul>
+        </section>
+        <section>
+          <h2>Selected Board</h2>
+          <p>
+            {chosenBoard.id ? `${chosenBoard.title} - ${chosenBoard.owner}` : 'Please select a board'}
+          </p>
+        </section>
+        <section>
+        {isBoardFormVisible ? <BoardForm createBoardCallback = {createNewBoard}></BoardForm> : ''}
+        <span onClick={toggleBoardForm}>{isBoardFormVisible ? 'Hide New Board Form' : 'Show New Board Form'}</span>
+        </section>
+        <div>
+          <CardList cardsData={cardData} deleteOneCardCallback={deleteOneCard} />
+        </div>
+        <CardForm createNewCardCallback={createNewCard}></CardForm>
+      </main>
+      <footer>
+        <p>Made by: Ruge, Megan, Diana, and Lin</p>
+      </footer>
+    </body>
   );
 }
 
