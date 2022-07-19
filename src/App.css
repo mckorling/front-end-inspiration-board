@@ -4,6 +4,14 @@ body {
   border: 1px solid red;
 }
 
+main {
+  display: flexbox;
+  flex-direction: column;
+  border: 2px solid black;
+
+  margin: 0 10%;
+}
+
 h1 {
   text-align: center;
   font-weight: 800;
@@ -12,29 +20,33 @@ h1 {
 
 
 .board-section{
-  display: flex;
-  flex-direction: column;
-  row-gap: 2rem;
+  display: inline-block;
+  width: 50%;
 }
 
-
-.left-section{
-  display: flex;
-  flex-direction: column;
-  row-gap: 15rem;
-  border: tomato;
-  border-radius: 50px;
-  border-style: dashed;
-  min-width: 50px;
+.board-form-section {
+  display: inline-block;
+  width: 50%;
 }
 
-.right-section{
+.top-section{
+  border: 1px solid red;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items:center;
+  justify-content: space-around;
+  margin: 0;
+}
+
+.bottom-section{
+  border: 1px solid red;
+  margin: 0;
+  display: inline-block;
+  /* flex-direction: column;
   row-gap: 17rem;
   border: tomato;
   border-radius: 50px;
-  border-style: dashed;
+  border-style: dashed;  */
 }
 
 .hide-button{
@@ -53,10 +65,12 @@ main {
 .board-titles {
   list-style: none;
 }
-/* .card-section{
-  
+.card-section{
+display: flex;
+flex-direction: row;  
+justify-content: space-evenly;
 
-} */
+}
 
 footer {
   text-align: center;

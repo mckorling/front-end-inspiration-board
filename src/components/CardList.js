@@ -1,4 +1,5 @@
 import Card from "./Card";
+import "./CardList.css";
 
 const CardList = (props) => {
   const allCards = props.cardsData.map((card) => {
@@ -14,7 +15,7 @@ const CardList = (props) => {
       />
     );
   });
-  return <section>{allCards}</section>;
+  return <section className="card-section">{allCards}</section>;
 };
 
 export default CardList;

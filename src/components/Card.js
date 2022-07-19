@@ -1,6 +1,8 @@
+import "./Card.css";
+
 const Card = (props) => {
   return (
-    <section>
+    <section className="one-card">
       <p>{props.message}</p>
       <p>{props.likes}</p>
       <button

@@ -134,7 +134,7 @@ function App() {
         <h1>Team Green's Board</h1>
       </header>
       <main>
-        <div className="left-section">
+        <div className="top-section">
           <section className="board-section">
             <section className="boards">
               <h2>Boards</h2>
@@ -162,7 +162,7 @@ function App() {
             </span>
           </section>
         </div>
-        <div className="right-section">
+        <div className="bottom-section">
           <section className="card-section">
             <CardList
               cardsData={cardData}
