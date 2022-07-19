@@ -49,7 +49,7 @@ function App() {
 
   const deleteOneCard = (card_id) => {
     axios
-      .delete(`https://team-green-inspo.herokuapp.com/cards/${card_id}`)
+      .delete(`${URL}/cards/${card_id}`)
       .then(() => {
         const newCardData = cardData.filter((card) => card_id !== card.card_id);
         setCardData(newCardData);
@@ -58,6 +58,24 @@ function App() {
         alert("Couldn't delete card. Please refresh and try again.");
         console.log("delete fail");
         console.log(error);
+      });
+  };
+
+  const likeOneCard = (card_id) => {
+    axios
+      .patch(`${URL}/cards/${card_id}`)
+      .then((response) => {
+        const newCardData = cardData.map((card) => {
+          if (card.id === card_id) {
+            card.likes_count++;
+          }
+          return card;
+        });
+        setCardData(newCardData);
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log("could not update like count");
       });
   };
 
@@ -148,6 +166,7 @@ function App() {
           <CardList
             cardsData={cardData}
             deleteOneCardCallback={deleteOneCard}
+            likeOneCardCallback={likeOneCard}
           />
         </div>
         <CardForm
