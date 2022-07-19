@@ -3,6 +3,7 @@ import CardList from "./components/CardList";
 import axios from "axios";
 import CardForm from "./components/CardForm";
 import BoardForm from "./components/BoardForm";
+import DropdownMenu from "./components/DropdownMenu";
 import { useState, useEffect } from "react";
 import Board from "./components/Board";
 
@@ -11,7 +12,7 @@ function App() {
   const [boardData, setBoardData] = useState([]);
   const [chosenBoard, setChosenBoard] = useState({});
   const [cardData, setCardData] = useState([]);
-  // Don't need useEffect for cardData because it only loads when a board is selected
+  const [sortOption, setSortOption] = useState(null);
 
   const createNewCard = ({ message, board_id }) => {
     axios
@@ -123,6 +124,11 @@ function App() {
     );
   });
 
+  const handleCardData = (event) => {
+    const option = event.value;
+    setSortOption(option);
+  };
+
   const [isBoardFormVisible, setIsBoardFormVisible] = useState(true);
   const toggleBoardForm = () => {
     setIsBoardFormVisible(!isBoardFormVisible);
@@ -163,11 +169,16 @@ function App() {
           </section>
         </div>
         <div className="bottom-section">
+          <DropdownMenu
+            handleCardDataCallback={handleCardData}
+            cardData={cardData}
+          />
           <section className="card-section">
             <CardList
               cardsData={cardData}
               deleteOneCardCallback={deleteOneCard}
               likeOneCardCallback={likeOneCard}
+              sortOption={sortOption}
             />
           </section>
           <section className="card-form-section">

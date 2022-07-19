@@ -15,6 +15,17 @@ const CardList = (props) => {
       />
     );
   });
+
+  const option = props.sortOption;
+  if (option === "key") {
+    allCards.sort((a, b) => (a.card_id > b.card_id ? 1 : -1));
+  } else if (option === "Alphabetically") {
+    allCards.sort((a, b) => (a.props.message > b.props.message ? 1 : -1));
+  } else if (option === "Likes") {
+    allCards.sort((a, b) => (a.props.likes > b.props.likes ? 1 : -1));
+  }
+  console.log(allCards);
+
   return <section className="card-section">{allCards}</section>;
 };
 
