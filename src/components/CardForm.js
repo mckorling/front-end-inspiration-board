@@ -20,6 +20,7 @@ const CardForm = (props) => {
   const submitForm = (event) => {
     event.preventDefault();
     props.createNewCardCallback(oneCardData);
+    setData(defaultCard);
   };
 
   return (
