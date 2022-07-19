@@ -21,7 +21,7 @@ function App() {
       })
       .then((response) => {
         console.log("making new card");
-        console.log(response);
+        //console.log(response);
 
         const nextId = response.data.card.id;
         console.log(nextId);
@@ -37,7 +37,9 @@ function App() {
       })
       .catch((error) => {
         console.log(error);
-        alert("Couldn't make new card. Enter a message.");
+        alert(
+          "Couldn't make new card. Please select a board and enter a message."
+        );
       });
   };
 
@@ -50,7 +52,7 @@ function App() {
       })
       .catch((error) => {
         alert("Couldn't delete card. Please refresh and try again.");
-        console.log("delete fail");
+        // console.log("delete fail");
         console.log(error);
       });
   };
@@ -65,7 +67,7 @@ function App() {
           }
           return card;
         });
-        console.log(newCardData);
+        //console.log(newCardData);
         setCardData(newCardData);
       })
       .catch((error) => {
@@ -100,7 +102,7 @@ function App() {
     axios
       .post(`${URL}/boards`, newBoard)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         newBoard.id = response.data.board.id;
         let newBoardData = [...boardData];
         newBoardData.push(newBoard);
@@ -108,6 +110,7 @@ function App() {
       })
       .catch((error) => {
         console.log(error);
+        alert("Couldn't make new board. Enter a title and owner.");
       });
   };
 
@@ -156,11 +159,13 @@ function App() {
             </section>
           </section>
           <section className="board-form-section">
-            {isBoardFormVisible ? (
-              <BoardForm createBoardCallback={createNewBoard}></BoardForm>
-            ) : (
-              ""
-            )}
+            <section className="form">
+              {isBoardFormVisible ? (
+                <BoardForm createBoardCallback={createNewBoard}></BoardForm>
+              ) : (
+                ""
+              )}
+            </section>
             <span className="hide-button" onClick={toggleBoardForm}>
               {isBoardFormVisible
                 ? "Hide New Board Form"
