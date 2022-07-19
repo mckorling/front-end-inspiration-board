@@ -2,8 +2,14 @@ const Card = (props) => {
   return (
     <section>
       <p>{props.message}</p>
-      <p>{props.likes_count}</p>
-      <button>Like</button>
+      <p>{props.likes}</p>
+      <button
+        onClick={() => {
+          props.likeOneCardCallback(props.card_id);
+        }}
+      >
+        Like
+      </button>
       <button
         onClick={() => {
           props.deleteOneCardCallback(props.card_id);

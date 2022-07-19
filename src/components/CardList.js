@@ -8,8 +8,9 @@ const CardList = (props) => {
         card_id={card.card_id}
         board_id={card.board_id}
         message={card.message}
-        likes_count={card.likes_count}
+        likes={card.likes}
         deleteOneCardCallback={props.deleteOneCardCallback}
+        likeOneCardCallback={props.likeOneCardCallback}
       />
     );
   });
