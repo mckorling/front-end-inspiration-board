@@ -1,9 +1,7 @@
 body {
   background-color: rgb(146, 203, 146);
   color: #6c584c;
-}
-main {
-  display: flex;
+  border: 1px solid red;
 }
 
 h1 {
@@ -11,3 +9,59 @@ h1 {
   font-weight: 800;
 }
 
+
+
+.board-section{
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+
+.left-section{
+  display: flex;
+  flex-direction: column;
+  row-gap: 15rem;
+  border: tomato;
+  border-radius: 50px;
+  border-style: dashed;
+  min-width: 50px;
+}
+
+.right-section{
+  display: flex;
+  flex-direction: column;
+  row-gap: 17rem;
+  border: tomato;
+  border-radius: 50px;
+  border-style: dashed;
+}
+
+.hide-button{
+  background-color: blueviolet;
+  border-radius: 1rem;
+  border-style: dashed;
+}
+
+main {
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  /* gap: 200px */
+}
+
+.board-titles {
+  list-style: none;
+}
+/* .card-section{
+  
+
+} */
+
+footer {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem; 
+}

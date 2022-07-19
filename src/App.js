@@ -84,7 +84,7 @@ function App() {
     axios
       .post(`${URL}/boards`, newBoard)
       .then((response) => {
-        console.log(response)
+        console.log(response);
         newBoard.id = response.data.board.id;
         let newBoardData = [...boardData];
         newBoardData.push(newBoard);
@@ -96,19 +96,21 @@ function App() {
   };
 
   const selectBoard = (board) => {
-    setChosenBoard(board)
+    setChosenBoard(board);
   };
 
   const boardTitles = boardData.map((board) => {
     return (
-      <li key = {board.id}>
+      <li key={board.id}>
         <Board board={board} onBoardSelect={selectBoard}></Board>
       </li>
     );
   });
 
   const [isBoardFormVisible, setIsBoardFormVisible] = useState(true);
-  const toggleBoardForm = () => {setIsBoardFormVisible(!isBoardFormVisible)}
+  const toggleBoardForm = () => {
+    setIsBoardFormVisible(!isBoardFormVisible);
+  };
 
   return (
     <body>
@@ -116,24 +118,45 @@ function App() {
         <h1>Team Green's Board</h1>
       </header>
       <main>
-        <section>
-          <h2>Boards</h2>
-          <ul>{boardTitles}</ul>
-        </section>
-        <section>
-          <h2>Selected Board</h2>
-          <p>
-            {chosenBoard.id ? `${chosenBoard.title} - ${chosenBoard.owner}` : 'Please select a board'}
-          </p>
-        </section>
-        <section>
-        {isBoardFormVisible ? <BoardForm createBoardCallback = {createNewBoard}></BoardForm> : ''}
-        <span onClick={toggleBoardForm}>{isBoardFormVisible ? 'Hide New Board Form' : 'Show New Board Form'}</span>
-        </section>
-        <div>
-          <CardList cardsData={cardData} deleteOneCardCallback={deleteOneCard} />
+        <div className="left-section">
+          <section className="board-section">
+            <section className="boards">
+              <h2>Boards</h2>
+              <ul className="board-titles">{boardTitles}</ul>
+            </section>
+            <section className="selected-board">
+              <h2>Selected Board</h2>
+              <p>
+                {chosenBoard.id
+                  ? `${chosenBoard.title} - ${chosenBoard.owner}`
+                  : "Please select a board"}
+              </p>
+            </section>
+          </section>
+          <section className="board-form-section">
+            {isBoardFormVisible ? (
+              <BoardForm createBoardCallback={createNewBoard}></BoardForm>
+            ) : (
+              ""
+            )}
+            <span className="hide-button" onClick={toggleBoardForm}>
+              {isBoardFormVisible
+                ? "Hide New Board Form"
+                : "Show New Board Form"}
+            </span>
+          </section>
         </div>
-        <CardForm createNewCardCallback={createNewCard}></CardForm>
+        <div className="right-section">
+          <section className="card-section">
+            <CardList
+              cardsData={cardData}
+              deleteOneCardCallback={deleteOneCard}
+            />
+          </section>
+          <section className="card-form-section">
+            <CardForm createNewCardCallback={createNewCard}></CardForm>
+          </section>
+        </div>
       </main>
       <footer>
         <p>Made by: Ruge, Megan, Diana, and Lin</p>
