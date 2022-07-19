@@ -1,5 +1,5 @@
 import "./App.css";
-import cardsData from "./cardsData.json";
+// import cardsData from "./cardsData.json";
 import CardList from "./components/CardList";
 import axios from "axios";
 import CardForm from "./components/CardForm";
@@ -11,23 +11,26 @@ function App() {
   const URL = "https://team-green-inspo.herokuapp.com";
   const [boardData, setBoardData] = useState([]);
   const [chosenBoard, setChosenBoard] = useState({});
-  const [cardData, setCardData] = useState(cardsData);
+  const [cardData, setCardData] = useState([]);
   // Don't need useEffect for cardData because it only loads when a board is selected
 
   // hardcode board_id here, need to be updated
-  useEffect((board_id) => {
-    getCardDataFromAPI(2);
-  }, []);
+  // useEffect((board_id) => {
+  //   getCardDataFromAPI(2);
+  // }, []);
 
   // API like count is undefined. need to check back end code
   const createNewCard = ({ message, board_id }) => {
     axios
-      .post(`https://team-green-inspo.herokuapp.com/boards/${board_id}/cards`, {
+      .post(`${URL}/boards/${board_id}/cards`, {
         message: message,
       })
       .then((response) => {
         console.log("making new card");
-        const nextId = cardData.slice(-1)[0].card_id + 1;
+        console.log(response);
+
+        const nextId = response.data.card.id;
+        console.log(nextId);
         const newCard = {
           card_id: nextId,
           board_id: board_id,
@@ -60,7 +63,7 @@ function App() {
 
   const getCardDataFromAPI = (board_id) => {
     axios
-      .get(`https://team-green-inspo.herokuapp.com/boards/${board_id}/cards`)
+      .get(`${URL}/boards/${board_id}/cards`)
       .then((response) => {
         setCardData(response.data.cards);
       })
@@ -84,7 +87,7 @@ function App() {
     axios
       .post(`${URL}/boards`, newBoard)
       .then((response) => {
-        console.log(response)
+        console.log(response);
         newBoard.id = response.data.board.id;
         let newBoardData = [...boardData];
         newBoardData.push(newBoard);
@@ -96,19 +99,22 @@ function App() {
   };
 
   const selectBoard = (board) => {
-    setChosenBoard(board)
+    setChosenBoard(board);
+    getCardDataFromAPI(board.id);
   };
 
   const boardTitles = boardData.map((board) => {
     return (
-      <li key = {board.id}>
+      <li key={board.id}>
         <Board board={board} onBoardSelect={selectBoard}></Board>
       </li>
     );
   });
 
   const [isBoardFormVisible, setIsBoardFormVisible] = useState(true);
-  const toggleBoardForm = () => {setIsBoardFormVisible(!isBoardFormVisible)}
+  const toggleBoardForm = () => {
+    setIsBoardFormVisible(!isBoardFormVisible);
+  };
 
   return (
     <body>
@@ -123,17 +129,31 @@ function App() {
         <section>
           <h2>Selected Board</h2>
           <p>
-            {chosenBoard.id ? `${chosenBoard.title} - ${chosenBoard.owner}` : 'Please select a board'}
+            {chosenBoard.id
+              ? `${chosenBoard.title} - ${chosenBoard.owner}`
+              : "Please select a board"}
           </p>
         </section>
         <section>
-        {isBoardFormVisible ? <BoardForm createBoardCallback = {createNewBoard}></BoardForm> : ''}
-        <span onClick={toggleBoardForm}>{isBoardFormVisible ? 'Hide New Board Form' : 'Show New Board Form'}</span>
+          {isBoardFormVisible ? (
+            <BoardForm createBoardCallback={createNewBoard}></BoardForm>
+          ) : (
+            ""
+          )}
+          <span onClick={toggleBoardForm}>
+            {isBoardFormVisible ? "Hide New Board Form" : "Show New Board Form"}
+          </span>
         </section>
         <div>
-          <CardList cardsData={cardData} deleteOneCardCallback={deleteOneCard} />
+          <CardList
+            cardsData={cardData}
+            deleteOneCardCallback={deleteOneCard}
+          />
         </div>
-        <CardForm createNewCardCallback={createNewCard}></CardForm>
+        <CardForm
+          createNewCardCallback={createNewCard}
+          board_id={chosenBoard.id}
+        ></CardForm>
       </main>
       <footer>
         <p>Made by: Ruge, Megan, Diana, and Lin</p>

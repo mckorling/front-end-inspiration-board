@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const CardForm = (props) => {
   // need to get board id as prop?
-  const defaultCard = { message: "", board_id: 2 };
+  const defaultCard = { message: "", board_id: null };
 
   const [oneCardData, setData] = useState(defaultCard);
 
@@ -13,6 +13,7 @@ const CardForm = (props) => {
 
     const newCardData = { ...oneCardData };
     newCardData[name] = value;
+    newCardData["board_id"] = props.board_id;
     setData(newCardData);
   };
 
