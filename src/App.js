@@ -167,10 +167,14 @@ function App() {
             <CardList
               cardsData={cardData}
               deleteOneCardCallback={deleteOneCard}
+              likeOneCardCallback={likeOneCard}
             />
           </section>
           <section className="card-form-section">
-            <CardForm createNewCardCallback={createNewCard}></CardForm>
+            <CardForm
+              createNewCardCallback={createNewCard}
+              board_id={chosenBoard.id}
+            ></CardForm>
           </section>
         </div>
       </main>
