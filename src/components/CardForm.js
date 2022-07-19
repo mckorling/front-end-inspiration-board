@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./CardForm.css";
 
 const CardForm = (props) => {
   // need to get board id as prop?
@@ -24,9 +25,9 @@ const CardForm = (props) => {
   };
 
   return (
-    <form onSubmit={submitForm}>
-      <h2>Create New Card</h2>
-      <label htmlFor="message">Message</label>
+    <form className="card-form" onSubmit={submitForm}>
+      <h2>Create A New Card:</h2>
+      <label htmlFor="message">Message:</label>
       <input
         type="text"
         name="message"
