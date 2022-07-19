@@ -1,5 +1,4 @@
 import "./App.css";
-// import cardsData from "./cardsData.json";
 import CardList from "./components/CardList";
 import axios from "axios";
 import CardForm from "./components/CardForm";
@@ -14,12 +13,6 @@ function App() {
   const [cardData, setCardData] = useState([]);
   // Don't need useEffect for cardData because it only loads when a board is selected
 
-  // hardcode board_id here, need to be updated
-  // useEffect((board_id) => {
-  //   getCardDataFromAPI(2);
-  // }, []);
-
-  // API like count is undefined. need to check back end code
   const createNewCard = ({ message, board_id }) => {
     axios
       .post(`${URL}/boards/${board_id}/cards`, {
@@ -35,7 +28,7 @@ function App() {
           card_id: nextId,
           board_id: board_id,
           message: message,
-          likes_count: 0,
+          likes: 0,
         };
         const newCardData = [...cardData];
         newCardData.push(newCard);
@@ -66,11 +59,12 @@ function App() {
       .patch(`${URL}/cards/${card_id}`)
       .then((response) => {
         const newCardData = cardData.map((card) => {
-          if (card.id === card_id) {
-            card.likes_count++;
+          if (card.card_id === card_id) {
+            card.likes++;
           }
           return card;
         });
+        console.log(newCardData);
         setCardData(newCardData);
       })
       .catch((error) => {
