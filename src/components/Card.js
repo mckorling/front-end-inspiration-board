@@ -6,6 +6,7 @@ const Card = (props) => {
       <p>{props.message}</p>
       <p>{props.likes}</p>
       <button
+        className="card-button"
         onClick={() => {
           props.likeOneCardCallback(props.card_id);
         }}
@@ -13,6 +14,7 @@ const Card = (props) => {
         Like
       </button>
       <button
+        className="card-button"
         onClick={() => {
           props.deleteOneCardCallback(props.card_id);
         }}
