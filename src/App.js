@@ -24,7 +24,6 @@ function App() {
         //console.log(response);
 
         const nextId = response.data.card.id;
-        console.log(nextId);
         const newCard = {
           card_id: nextId,
           board_id: board_id,

@@ -22,9 +22,8 @@ const CardList = (props) => {
   } else if (option === "Alphabetically") {
     allCards.sort((a, b) => (a.props.message > b.props.message ? 1 : -1));
   } else if (option === "Likes") {
-    allCards.sort((a, b) => (a.props.likes > b.props.likes ? 1 : -1));
+    allCards.sort((a, b) => (a.props.likes < b.props.likes ? 1 : -1));
   }
-  console.log(allCards);
 
   return <section className="card-section">{allCards}</section>;
 };
