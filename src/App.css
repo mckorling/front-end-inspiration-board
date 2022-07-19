@@ -49,10 +49,16 @@ h1 {
   border-style: dashed;  */
 }
 
+.form{
+  margin: 20px;
+}
+
 .hide-button{
-  background-color: blueviolet;
+  background-color: rgb(110, 88, 78);
   border-radius: 1rem;
-  border-style: dashed;
+  color:aliceblue;
+  padding: .6vw;
+  font-size: 1vw;
 }
 
 main {
@@ -64,6 +70,9 @@ main {
 
 .board-titles {
   list-style: none;
+  padding: 0;
+  height: 16vw;
+  overflow-y: auto
 }
 .card-section{
 display: flex;

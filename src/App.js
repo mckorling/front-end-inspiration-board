@@ -153,11 +153,13 @@ function App() {
             </section>
           </section>
           <section className="board-form-section">
-            {isBoardFormVisible ? (
-              <BoardForm createBoardCallback={createNewBoard}></BoardForm>
-            ) : (
-              ""
-            )}
+            <section className="form">
+              {isBoardFormVisible ? (
+                <BoardForm createBoardCallback={createNewBoard}></BoardForm>
+              ) : (
+                ""
+              )}
+            </section>
             <span className="hide-button" onClick={toggleBoardForm}>
               {isBoardFormVisible
                 ? "Hide New Board Form"
