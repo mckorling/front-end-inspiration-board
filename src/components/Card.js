@@ -4,7 +4,9 @@ const Card = (props) => {
   return (
     <section className="one-card">
       <p>{props.message}</p>
-      <p>{props.likes}</p>
+      <p>
+        {props.likes} <span id="tree">🌴</span>s
+      </p>
       <button
         className="card-button"
         onClick={() => {

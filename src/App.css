@@ -2,14 +2,16 @@ body {
   background-color: rgb(146, 203, 146);
   color: #6c584c;
   border: 1px solid red;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
   display: flexbox;
   flex-direction: column;
   border: 2px solid black;
-
   margin: 0 10%;
+  flex-wrap: wrap;
 }
 
 h1 {
@@ -81,10 +83,10 @@ justify-content: space-evenly;
 
 }
 
-footer {
+/* footer {
   text-align: center;
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 2.5rem; 
-}
+} */
