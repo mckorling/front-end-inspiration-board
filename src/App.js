@@ -64,6 +64,7 @@ function App() {
         console.log(newBoardData);
         setBoardData(newBoardData);
         setChosenBoard({});
+        setCardData([]);
       })
       .catch((error) => {
         alert("Couldn't delete board. Please refresh and try again.");
