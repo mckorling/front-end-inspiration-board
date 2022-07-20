@@ -194,7 +194,7 @@ function App() {
         </div>
       </main>
       <footer>
-        <p>Made by: Ruge, Megan, Diana, and Lin</p>
+        <p>&#x2764; Made by: Ruge, Megan, Diana, and Lin &#x2764;</p>
       </footer>
     </body>
   );

@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@400;600&family=Grape+Nuts&family=Source+Code+Pro:wght@300&display=swap');
+
+
 body {
   background-color: rgb(146, 203, 146);
+  font-family: 'Edu VIC WA NT Beginner', cursive;
   color: #6c584c;
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
 }
@@ -9,7 +12,6 @@ body {
 main {
   display: flex;
   flex-direction: column;
-  border: 2px solid black;
   margin: 0 10%;
   flex-wrap: wrap;
   text-align: center;
@@ -32,7 +34,6 @@ h1 {
 }
 
 .top-section{
-  border: 1px solid red;
   display: flex;
   flex-direction: row;
   align-items:center;
@@ -41,7 +42,6 @@ h1 {
 }
 
 .bottom-section{
-  border: 1px solid red;
   margin: 0;
   display: inline-block;
 }
@@ -51,12 +51,20 @@ h1 {
 }
 
 .hide-button{
+  display: block;
+  margin: 0 30%;
+  text-align: center;
   background-color: rgb(110, 88, 78);
   border-radius: 1rem;
   color:aliceblue;
   padding: .6vw;
   font-size: 1vw;
 }
+
+.hide-button:hover {
+  cursor: pointer;
+}
+
 
 .board-titles {
   list-style: none;
@@ -83,10 +91,11 @@ input[type="submit"] {
 }
 
 footer {
-  margin-left: 10px;
+  text-align: center;
 }
 
 input[type="text"] {
   line-height: 1.5em;
   font-size: 1em;
 }
+
