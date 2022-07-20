@@ -1,6 +1,6 @@
 import React from "react";
 import Select from "react-select";
-import { useState } from "react";
+import PropTypes from "prop-types";
 
 const options = [
   { value: "ID", label: "ID" },
@@ -15,6 +15,11 @@ const DropdownMenu = ({ handleCardDataCallback }) => {
       options={options}
     />
   );
+};
+
+DropdownMenu.propTypes = {
+  handleCardDataCallback: PropTypes.func.isRequired,
+  cardData: PropTypes.array.isRequired,
 };
 
 export default DropdownMenu;

@@ -12,7 +12,7 @@ function App() {
   const [boardData, setBoardData] = useState([]);
   const [chosenBoard, setChosenBoard] = useState({});
   const [cardData, setCardData] = useState([]);
-  const [sortOption, setSortOption] = useState(null);
+  const [sortOption, setSortOption] = useState("");
 
   const createNewCard = ({ message, board_id }) => {
     axios

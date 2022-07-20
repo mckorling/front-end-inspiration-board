@@ -1,5 +1,5 @@
 import "./BoardForm.css";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { useState } from "react";
 
 const defaultBoard = { title: "", owner: "" };
@@ -50,5 +50,9 @@ const BoardForm = (props) => {
     </section>
   );
 };
+
+BoardForm.propTypes = {
+  createBoardCallback:PropTypes.func.isRequired
+}
 
 export default BoardForm;

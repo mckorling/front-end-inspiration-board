@@ -1,4 +1,5 @@
 import "./Card.css";
+import PropTypes from "prop-types";
 
 const Card = (props) => {
   return (
@@ -26,5 +27,14 @@ const Card = (props) => {
     </section>
   );
 };
+
+Card.propTypes = {
+  message: PropTypes.string.isRequired,
+  card_id: PropTypes.number.isRequired,
+  board_id: PropTypes.number.isRequired,
+  likes: PropTypes.number.isRequired,
+  deleteOneCardCallback: PropTypes.func.isRequired,
+  likeOneCardCallback: PropTypes.func.isRequired,
+}
 
 export default Card;

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./CardForm.css";
+import PropTypes from 'prop-types';
 
 const CardForm = (props) => {
   // need to get board id as prop?
@@ -38,5 +39,10 @@ const CardForm = (props) => {
     </form>
   );
 };
+
+CardForm.propTypes = {
+  createNewCardCallback: PropTypes.func.isRequired,
+  board_id: PropTypes.number
+}
 
 export default CardForm;

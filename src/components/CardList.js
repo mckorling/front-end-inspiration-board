@@ -1,5 +1,6 @@
 import Card from "./Card";
 import "./CardList.css";
+import PropTypes from 'prop-types';
 
 const CardList = (props) => {
   const allCards = props.cardsData.map((card) => {
@@ -27,5 +28,14 @@ const CardList = (props) => {
 
   return <section className="card-section">{allCards}</section>;
 };
+
+CardList.propTypes = {
+  cardsData: PropTypes.array.isRequired,
+  deleteOneCardCallback: PropTypes.func.isRequired,
+  likeOneCardCallback: PropTypes.func.isRequired,
+  sortOption: PropTypes.string.isRequired,
+}
+
+
 
 export default CardList;
