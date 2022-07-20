@@ -45,9 +45,6 @@ const BoardForm = (props) => {
             onChange={handleFormInput}
           />
         </label>
-        <p>
-          Preview:<span id="preview"></span>
-        </p>
         <input type="submit" />
       </form>
     </section>
