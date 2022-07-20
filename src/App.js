@@ -56,6 +56,22 @@ function App() {
       });
   };
 
+  const deleteOneBoard = (board_id) => {
+    axios
+      .delete(`${URL}/boards/${board_id}`)
+      .then(() => {
+        const newBoardData = boardData.filter((board) => board_id !== board.id);
+        console.log(newBoardData);
+        setBoardData(newBoardData);
+        setChosenBoard({});
+      })
+      .catch((error) => {
+        alert("Couldn't delete board. Please refresh and try again.");
+        // console.log("delete fail");
+        console.log(error);
+      });
+  };
+
   const likeOneCard = (card_id) => {
     axios
       .patch(`${URL}/cards/${card_id}`)
@@ -155,6 +171,9 @@ function App() {
                   ? `${chosenBoard.title} - ${chosenBoard.owner}`
                   : "Please select a board"}
               </p>
+              <button onClick={() => deleteOneBoard(chosenBoard.id)}>
+                Delete
+              </button>
             </section>
           </section>
           <section className="board-form-section">
