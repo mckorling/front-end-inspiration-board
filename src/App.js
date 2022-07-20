@@ -137,7 +137,7 @@ function App() {
   };
 
   return (
-    <body>
+    <body className="container">
       <header>
         <h1>Team Green's Board</h1>
       </header>
