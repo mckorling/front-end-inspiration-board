@@ -76,12 +76,40 @@ main {
   height: 16vw;
   overflow-y: auto
 }
-.card-section{
+
+.card-form-section {
+  width: 30%;
+
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  cursor: pointer;
+}
+
+input[type="submit"] {
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+footer {
+  margin-left: 10px;
+}
+
+input[type="text"] {
+  line-height: 1.5em;
+  font-size: 1em;
+}
+
+/* .card-section{
 display: flex;
 flex-direction: row;  
 justify-content: space-evenly;
 
-}
+} */
 
 /* footer {
   text-align: center;
